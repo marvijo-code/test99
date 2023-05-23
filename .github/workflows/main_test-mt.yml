@@ -27,9 +27,8 @@ jobs:
           npm run build --if-present
           npm run test --if-present
 
-
       - name: Zip exported app
-        run: zip out node-app.zip
+        run: zip node-app.zip out
         
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
