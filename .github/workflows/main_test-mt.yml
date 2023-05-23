@@ -28,7 +28,7 @@ jobs:
           npm run test --if-present
 
       - name: Zip exported app
-        run: zip node-app.zip out
+        run: zip node-app.zip out/* -r
         
       - name: Debug
         run: ls -rsa
