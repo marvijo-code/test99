@@ -62,4 +62,4 @@ jobs:
           app-name: 'test-mt'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_866B79FD41654F8382722578D5C8A582 }}
-          package: node-app
+          package: node-app.zip
