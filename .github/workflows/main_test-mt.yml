@@ -23,15 +23,20 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          npm install
+          npm ci
           npm run build --if-present
+          npm run export
           npm run test --if-present
 
+
+      - name: Zip exported app
+        run: zip out node-app.zip
+        
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: .
+          path: node-app.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -44,8 +49,11 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: node-app
+          name: node-app.zip
 
+#       - name: UnZip exported app
+#         run: unzip node-app.zip .
+        
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
@@ -53,4 +61,4 @@ jobs:
           app-name: 'test-mt'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_866B79FD41654F8382722578D5C8A582 }}
-          package: .
+          package: node-app.zip
