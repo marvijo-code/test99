@@ -31,7 +31,10 @@ jobs:
         run: zip node-app.zip out
         
       - name: Debug
-        run: ls -al
+        run: ls -rsa
+        
+      - name: Debug
+        run: ls out/ -rsa
         
 #       - name: Upload artifact for deployment job
 #         uses: actions/upload-artifact@v2
