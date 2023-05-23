@@ -56,7 +56,7 @@ jobs:
           name: node-app
 
       - name: UnZip exported app
-        run: unzip node-app.zip .
+        run: unzip node-app.zip
 
       - name: Debug
         run: ls -Rsa
@@ -68,4 +68,4 @@ jobs:
           app-name: 'test-mt'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_866B79FD41654F8382722578D5C8A582 }}
-          package: .
+          package:
